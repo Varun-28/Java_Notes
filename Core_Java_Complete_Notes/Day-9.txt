@@ -1,0 +1,191 @@
+Applets-
+Applets are used for creating interactive object for a web page.They are embedded on a web page.for creating an applet you must import java.applet package & must inherit the Applet class.
+
+Applet Life Cycle- during execution, applet follows a life cycle.and the life cycle will be-
+
+init()--->start()---->paint()--------->stop()---------->destroy()
+
+init()- when the applet inilizes then this method is fired.
+Syntax
+	public void init()
+	{
+		body of the method
+	}
+start()- when the applet start the execution then this method fires.
+Syntax
+	public void start()
+	{
+		body of the method
+	}
+paint()- when the applet activates then this method is fires.It contains Graphics class as argument so you must import java.awt when you use this method.
+Syntax
+	public void paint(Graphics g)
+	{
+		body of the method
+	}
+
+stop()- when the applet stops the execution then this method fires.
+Syntax
+	public void stop()
+	{
+		body of the method
+	}
+destroy()- when the applet release the memory then this method is fires.
+Syntax
+	public void destroy()
+	{
+		body of the method
+	}
+
+Executing an applet-for executing an applet we can follow one of the following two techniques-
+1. Creating a seperate html file
+2. using appletviewer tool ( provided by jdk)
+in both the above cases you must use the <applet> tag like the following-
+<applet code="classname" width=value height=value>
+</applet>
+
+
+Example
+import java.applet.*;
+import java.awt.*;
+public class life extends Applet
+{
+	public void init()
+	{
+		System.out.println("Applet Initlized");
+	}
+	public void start()
+	{
+		System.out.println("Applet Starts the Execution");
+	}
+	public void paint(Graphics g)
+	{
+		g.drawString("Welcome Friends",10,20);
+		System.out.println("Applet Activated");
+	}
+	public void stop()
+	{
+		System.out.println("Applet Stops the Execution");
+	}
+	public void destroy()
+	{
+		System.out.println("Applet Release The Memory");
+	}
+}
+/*
+<applet code="life" width="300" height="300">
+</applet>
+*/
+for compiling use
+	javac programname.java
+for run
+	appletviewer programname.java
+______________________________________________
+Methods of Applet Class
+	1. setBackground()- sets the background Color of the applet
+	2. setForeground()- sets the font color of the applet
+Color Class - This class is used for creating a Color object.
+Constructor
+	Color(int red,int green,int blue)
+The range will be-
+	0-255 for each
+Some Color Constants are also available-
+Color.red
+Color.blue
+Color.green etc
+
+Font Class - This class construct a Font Object
+Constructor
+	Font(String FontName,int Style,int Size)
+
+Example : 
+import java.applet.*;
+import java.awt.*;
+public class testapp extends Applet
+{
+	Color c;
+	Font f1;
+	public void init()
+	{
+		c=new Color(0,255,0);
+		f1=new Font("Arial",Font.PLAIN,25);
+		setBackground(Color.red);
+		setForeground(Color.yellow);
+	}
+	public void paint(Graphics g)
+	{
+		g.setFont(f1);
+		g.drawString("Sushant IT College",20,50);
+		g.setColor(c);
+		g.drawString("Naini",35,80);
+	}
+		
+}
+/*
+<applet code="testapp" width="300" height="300">
+</applet>
+*/
+
+
+Working with Graphics Class-Graphics class provides a lot of methods for creating an interactive objects, some of them are-
+1. setColor()- sets the Color into the object
+2. setFont()- sets the font style
+3. drawString()- draws a message on Applet
+Syntax
+	drawString(String msg,x,y);
+4. drawLine()- draws a line on the applet
+Syntax
+	drawLine(int x1,int y1,int x2,int y2)
+5. drawRect()- draws a Rectangle on the applet
+Syntax
+	drawRect(int x,int y,int width,int height)
+6. drawOval()- draws an Oval on the applet
+Syntax
+	drawOval(int x,int y,int width,int height)
+7. fillRect()- draws a Solid Rectangle on the applet
+Syntax
+	fillRect(int x,int y,int width,int height)
+8. fillOval()- draws a Solid Oval on the applet
+Syntax
+	fillOval(int x,int y,int width,int height)
+9. drawImage()- draws on Image on The Applet
+Syntax
+	drawImage(Imageobject,int x,int y,int width,int height,this)
+
+________________________________________________________________
+ Example
+import java.applet.*;
+import java.awt.*;
+public class life extends Applet
+{
+	Color c;
+	Font f1,f2;
+	public void init()
+	{
+		c=new Color(0,255,0);
+		f1=new Font("Impact",Font.PLAIN,35);
+		f2=new Font("Arial",Font.PLAIN,20);
+	}
+	public void paint(Graphics g)
+	{
+		g.setFont(f1);
+		g.setColor(c);
+		g.drawString("Sushant IT College",120,50);
+		g.setColor(Color.blue);
+		g.drawLine(0,60,400,60);
+		g.setColor(Color.red);
+		g.setFont(f2);
+		g.drawString("Naini",195,80);
+	}
+ 	
+}
+/*
+<applet code="life" width="400" height="400">
+</applet>
+*/
+________________________________________________________________
+
+
+
+
+

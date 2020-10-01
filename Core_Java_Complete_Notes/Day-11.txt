@@ -1,0 +1,213 @@
+Working with Frame- Frame is used for creating a windows based application.
+Constructors
+	Frame()
+	Frame(String title)
+Methods
+	setTitle()- sets the title of Frame
+	setSize(width, height)- sets the size of window
+	setVisible(boolean value)- sets the visibility of the frame
+	setLayout()- sets the layout of the frame
+	
+Example
+import java.awt.*;
+class win extends Frame
+{
+	public win()
+	{
+		setTitle("My First Window");
+		setSize(400,300);
+		setVisible(true);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}
+
+____________________________________
+Layout Managers- The Layout Managers allows for setting the layout of a window means how the controls will arrange on the window, it will set by Layout Managers.For setting layout managers we must use setLayout() method.
+Layout Managers Classes are-
+1. FlowLayout
+2. GridLayout
+3. BorderLayout
+
+1. FlowLayout- This is the default layout of the applet.and it arrange the components in relative manner. 
+Constructors
+	FlowLayout()
+	FlowLayout(int align)
+		FlowLayout.LEFT
+		FlowLayout.CENTER
+		FlowLayout.RIGHT
+
+Example
+import java.awt.*;
+class win extends Frame
+{
+	Label l1;
+	TextField t1;
+	Button b1;
+	FlowLayout flow;
+	public win()
+	{
+		setTitle("My First Window");
+		flow=new FlowLayout(FlowLayout.LEFT);
+		setLayout(flow);
+		l1=new Label("Enter Name ");
+		t1=new TextField(20);
+		b1=new Button("Click");
+		add(l1);
+		add(t1);
+		add(b1);
+		setSize(400,300);
+		setVisible(true);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}
+
+	
+_________________________________________
+GridLayout- This class arrange the components in tabular form.
+Constructor
+	GridLayout(int rows,int cols);
+import java.awt.*;
+class win extends Frame
+{
+	Label l1,l2,l3;
+	TextField t1,t2;
+	Button b1;
+	GridLayout grid;
+	public win()
+	{
+		setTitle("My First Window");
+		grid=new GridLayout(3,2);
+		setLayout(grid);
+		l1=new Label("Enter User Name ");
+		l2=new Label("Enter Password");
+		l3=new Label("");
+		t1=new TextField(20);
+		t2=new TextField(20);
+		t2.setEchoChar('*');
+		b1=new Button("Login");
+		add(l1);
+		add(t1);
+		add(l2);
+		add(t2);
+		add(l3);
+		add(b1);
+		setSize(400,150);
+		setVisible(true);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}
+
+____________________________________________
+
+BorderLayout- This Layout Managers Class arrange the elements into specific zone of the window may be East,West,North,South or Center by default it is Center & this is default layout of the Frame.
+Example
+import java.awt.*;
+class win extends Frame
+{
+	Label l1,l2;
+	public win()
+	{
+		setTitle("My First Window");
+		setLayout(new BorderLayout());
+		l1=new Label("United College",Label.CENTER);
+		l1.setBackground(Color.pink);
+		l2=new Label("Naini");
+		add(l1,"North");
+		add(l2,"South");
+		setSize(400,150);
+		setVisible(true);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}
+
+__________________________________________________________
+import java.awt.*;
+class win extends Frame
+{
+	Label l1,l2;
+	public win()
+	{
+		setTitle("My First Window");
+		setLayout(new BorderLayout());
+		l1=new Label("Sushant IT College",Label.CENTER);
+		l1.setBackground(Color.pink);
+		l2=new Label("Naini");
+		add(l1,"North");
+		add(l2,"South");
+		setSize(400,150);
+		setVisible(true);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}
+
+	
+__________________________________________
+Note- for setting your own layout you can use setBounds() method with following syntax-
+	objectname.setBounds(x,y,width,height)
+Example
+import java.awt.*;
+class win extends Frame
+{
+	Label l1,l2;
+	TextField t1,t2;
+	Button b1;
+	public win()
+	{
+		setTitle("Login Window");
+		setLayout(null);
+		l1=new Label("Enter User Name ");
+		l2=new Label("Enter Password");
+		t1=new TextField(20);
+		t2=new TextField(20);
+		b1=new Button("Login");
+		l1.setBounds(10,40,150,20);
+		t1.setBounds(160,40,120,20);
+		l2.setBounds(10,70,150,20);
+		t2.setBounds(160,70,120,20);
+		b1.setBounds(160,100,120,20);
+		add(l1);
+		add(t1);
+		add(l2);
+		add(t2);
+		add(b1);
+		setSize(400,150);
+		setVisible(true);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}

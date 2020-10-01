@@ -1,0 +1,177 @@
+Constructors- They are used for initilizing the members of a class. the properties of constructors will be-
+1. The name of constructor must be same as the name of class.
+2. They did not return any value not even void.
+3. They called automatically when the object of the class is created.
+
+Types of Constructors
+	1. Default Constructors
+	2. Parametrized Constructors
+	3. Overloaded Constructors
+1. Default Constructors- If a constructors did not contains any argument then it is known as default constructors.
+eg.
+class cons
+{
+	String name;
+	int age;
+	public cons()
+	{
+		name="Ravi";
+		age=24;
+	}
+	public void show()
+	{
+		System.out.println("Name : "+name);
+		System.out.println("Age : "+age);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		cons obj=new cons();
+		obj.show();
+	}
+}
+
+		
+___________________________________________________________
+
+2. Parametrized Constructors- The constrctors which takes the arguments are known as parametrized constructors. the value of argument must be passed at the time of object creation.
+class cons
+{
+	String name;
+	int age;
+	public cons(String n,int a)
+	{
+		name=n;
+		age=a;
+	}
+	public void show()
+	{
+		System.out.println("Name : "+name);
+		System.out.println("Age : "+age);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		cons obj=new cons("Ravi",25);
+		obj.show();
+	}
+}
+
+		
+________________________________________________________________________________
+3. Overloaded Constructors - If a class contains more than one construtor then this term is known as overloaded constructor.
+class Line
+{
+	int i;
+	public Line()
+	{
+		for(i=1;i<=70;i++)
+		{
+			System.out.print("*");
+		}
+		System.out.println();
+	}
+	public Line(String ch)
+	{
+		for(i=1;i<=70;i++)
+		{
+			System.out.print(ch);
+		}
+		System.out.println();
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		Line obj;
+		System.out.println("First Line Style");
+		obj=new Line();
+		System.out.println("Second Line Style");
+		obj=new Line("&");
+	}
+}
+
+		
+_________________________________________________________
+Inheritance- This is the concept of reusability. Here we inherit an existing class (super class) in new class (sub class).
+for definiting a sub class you must follow the folliwng syntax-
+
+         SuperClass
+	|
+	|
+       SubClass
+class subclassname extends superclassname
+{
+	body of the class
+}
+
+Note - remember only public member of super class inherited in sub class.
+Example
+class first
+{
+	public void one()
+	{
+		System.out.println("First Method of The Super Class Class");
+	}
+}
+
+class sec extends first
+{
+	public void two()
+	{
+		System.out.println(" Method of The Sub Class");
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		sec obj=new sec();
+		obj.one();
+		obj.two();
+		
+	}
+}
+
+______________________________________________________
+
+Accessing private member of a class- we can not directly access any private member of a class but if you want to do so then you can call private members by using public functions of the same class.
+
+class first
+{
+	public void one()
+	{
+		System.out.println("First Method of The Super Class ");
+		privateone();
+	}
+	private void privateone()
+	{
+		System.out.println("private Method of The Super Class");
+	}
+}
+
+class sec extends first
+{
+	public void two()
+	{
+		System.out.println(" Method of The Sub Class Class");
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		sec obj=new sec();
+		obj.one();
+		obj.two();
+		//obj.privateone(); generate an error
+	}
+}
+________________________________________
+
+	

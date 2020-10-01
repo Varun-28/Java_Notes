@@ -1,0 +1,153 @@
+MultiThreaded Programming- A process is generally known as threads, java allows you for creating a program in which more than one process could execute simultaneously.for creating a multithread programming we can use two techiques-
+1. by implementing Runnable interface
+2. by extending Thread class
+	in both the cases you must override run() method which specifies the functionality of a thread.The general form of run() method will be-
+	public void run()
+	{
+		body of the method
+	}
+Some methods of Thread Class-
+1. start()- starts the execution of a Thread
+2. stop()- stops the execution of a Thread
+3. setPriority()- sets the priority of a Thread may be 0,5,10.
+4. sleep()- this method pause the execution of thread for a short period of time.
+	It throws the InterruptedException. it contains time in millisecond as argument.
+5. isAlive()- it returns that thread is in working stage or not?
+6. join()- stops the execution of next statement until all threads executed.
+
+
+class thdemo implements Runnable
+{
+	Thread t;
+	String name;
+	int i;
+	public thdemo(String n)
+	{
+		name=n;
+		t=new Thread(this);
+		t.start();
+	}
+	public void run()
+	{
+		for(i=1;i<=5;i++)
+		{
+			System.out.println(name);
+			try{
+				Thread.sleep(1000);
+			}catch(InterruptedException e)
+			{}
+		}
+	}
+}
+
+class test
+{
+	public static void main(String args[])
+	{
+		thdemo t1=new thdemo("Hello");
+		thdemo t2=new thdemo("Hi");
+		thdemo t3=new thdemo("Bye");
+			
+	}
+}
+
+_____________________________________________________________
+
+using isAlive() & join() Methods-
+class thdemo implements Runnable
+{
+	Thread t;
+	String name;
+	int i;
+	public thdemo(String n)
+	{
+		name=n;
+		t=new Thread(this);
+		t.start();
+	}
+	public void run()
+	{
+		for(i=1;i<=5;i++)
+		{
+			System.out.println(name);
+			try{
+				Thread.sleep(2000);
+			}catch(InterruptedException e)
+			{}
+		}
+		System.out.println(name+" Thread is Exiting.....");
+	}
+}
+
+class test
+{
+	public static void main(String args[])
+	{
+		thdemo t1=new thdemo("Hello");
+		thdemo t2=new thdemo("Hi");
+		thdemo t3=new thdemo("Bye");
+		System.out.println("Hello Thread is Working :"+t1.t.isAlive());
+		System.out.println("Hi Thread is Working :"+t2.t.isAlive());
+		System.out.println("Bye Thread is Working :"+t3.t.isAlive());
+		try{
+			t1.t.join();
+			t2.t.join();
+			t3.t.join();
+		}catch(InterruptedException e)
+		{}
+		System.out.println("Hello Thread is Working :"+t1.t.isAlive());
+		System.out.println("Hi Thread is Working :"+t2.t.isAlive());
+		System.out.println("Bye Thread is Working :"+t3.t.isAlive());
+		System.out.println("main() Thread is Exiting.....");
+			
+	}
+}
+_________________________________________________________________________
+Synchronization in Thread- if more than one process (objects) want to access a single resourse then the synchronization problem could occur.
+
+class callme
+{
+	public synchronized  void mainfun(String name)
+	{
+		System.out.print("["+name);
+		try{
+			Thread.sleep(1000);
+		}catch(InterruptedException e){}
+		System.out.println("]");
+			
+	}
+}
+class middle implements Runnable
+{
+	callme ob;
+	String msg;
+	public middle(callme o,String n)
+	{
+		ob=o;
+		msg=n;
+		new Thread(this).start();
+	}
+	public void run()
+	{
+		
+		ob.mainfun(msg); 
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		callme obj=new callme();
+		middle t1=new middle(obj,"Dhananjay");
+		middle t2=new middle(obj,"Kumar");
+		middle t3=new middle(obj,"Sharma");
+	}
+}
+________________________________________________________________________________
+
+
+
+
+
+
+

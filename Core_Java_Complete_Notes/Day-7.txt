@@ -1,0 +1,152 @@
+Exception Handling-
+In a program there may be 3 types of errors could be generated these are-
+1. Compile time errors
+2. Logical Errors
+3. Run Time Errors
+
+	Compile time errors are traced by the compiler and without debuging this your program could not execute.
+	Logical erros are occured due to invalid logic of the programmer and this could be traced by a programmer.
+
+Run Time Errors- they are known as execeptions and when they occured they terminated the execution a program.
+The exception handling  is a techniqe which allows you form handling run time exceptions.
+java provides a block named as try.. catch.. block which is used for handling any exeception.
+Syntax
+try
+{
+	java code....
+}catch(ExceptionClassName objectName)
+{
+	Message/Action
+}
+finally
+{
+	Message/Action
+}
+note - finally is an optional block which execute in each case either exception is occured or not?
+import java.util.*;
+class test
+{
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int a,b,c;
+		System.out.print("Enter First Number :");
+		a=sc.nextInt();
+		System.out.print("Enter Second Number :");
+		b=sc.nextInt();
+		try{
+			c=a/b;
+			System.out.println("Result : "+c);
+		}catch(Exception e)
+		{
+			System.out.println("Problem in Divide");
+		}
+		finally
+		{
+			System.out.println("Bye..Bye");
+		}
+		System.out.println("Some Other Work");
+
+	}
+}
+
+Built-in Exception Classes- java provides a lot of built in exception classes, which are used for handling the exception as per the exception type.
+Classes				Meaning
+IOException			When I/O related problems occur
+ArithmeticException			When number is / by 0
+ArrayIndexOutOfBoundsException	When we want to access an array element which is not exist in the array
+StringIndexOutOfBoundsException	When we want to access a string element which is not exist in the string
+ClassNotFoundException		When the used class is not found
+NullPointerException		if an object is used without initilizing
+
+using single try with multiple catch- if you want to handle the exception according to their exception type then you can use single try with multiple catch-
+class exec
+{
+	public static void main(String args[])
+	{
+		int i;
+		for(i=1;i<=3;i++)
+		{
+			try{
+			switch(i)
+			{
+				case 1:
+					int a=10,b=0;
+					System.out.println(a/b);
+					break;
+				case 2:
+					String s="Jay";
+					System.out.println(s.charAt(10));
+					break;
+				case 3:
+					int arr[]=new int[30];
+					System.out.print(arr[80]);
+					break;
+			}
+			}catch(ArrayIndexOutOfBoundsException ae)
+			{
+				System.out.println("Array Related problem");
+			}
+			catch(StringIndexOutOfBoundsException se)
+			{
+				System.out.println("String Related problem");
+			}
+			catch(ArithmeticException e)
+			{
+				System.out.println("Number is / By 0");
+			}
+		}				
+	}
+}
+________________________________________________________________________
+using throws & throw statement-
+throws - if you are not intrested to handle the run time exceptions then you can use throws statement
+import java.io.*;
+class demo
+{
+	public static void main(String args[]) throws IOException
+	{
+		InputStreamReader in=new InputStreamReader(System.in);
+		BufferedReader br=new BufferedReader(in);
+		int a,b,c;
+		System.out.print("Enter First Number :");
+		a=Integer.parseInt(br.readLine());
+		System.out.print("Enter Second Number :");
+		b=Integer.parseInt(br.readLine());
+		c=a+b;
+		System.out.println("Sum : "+c);
+
+	}
+}
+throw- it is used for throwing our own exception.
+import java.util.*;
+class ownexec
+{
+	public void inrange(int n) throws Exception
+	{
+		if(n>=1 && n<=10)
+			System.out.println(n+" is a valid Value");
+		else
+			throw new Exception(n+" is not a valid Value");
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int num;
+		System.out.print("Enter  Number :");
+		num=sc.nextInt();
+		try{
+			ownexec obj=new ownexec();
+			obj.inrange(num);
+		}catch(Exception e)
+		{
+			System.out.println("Error : "+e.getMessage());
+		}
+	}
+}
+
+
+

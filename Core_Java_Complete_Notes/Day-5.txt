@@ -1,0 +1,243 @@
+using this keyword- We can use two variations of this keyword, these are-
+1. this statement
+2. this() method
+1. this statement- It reference the member of same class.
+class thdemo
+{
+	int a,b;
+	public void get(int a,int b)
+	{
+		this.a=a;
+		this.b=b;
+	}
+	public void put()
+	{
+		System.out.println("First Value : "+a);
+		System.out.println("Second Value : "+b);
+	}
+}
+
+class test
+{
+	public static void main(String args[])
+	{
+		thdemo obj=new thdemo();
+		obj.get(10,20);
+		obj.put();
+		
+	}
+}
+____________________________________________________
+this () method- It is used for calling the constructor of class inside the another constructor of same class.
+class thdemo
+{
+	public thdemo()
+	{	
+		System.out.println("First Constructor");
+	}
+	public thdemo(int n)
+	{	
+		this();
+		System.out.println("Second Constructor");
+	}
+}
+
+class test
+{
+	public static void main(String args[])
+	{
+		thdemo obj=new thdemo(10);
+		
+	}
+}
+___________________________________________________________________________
+using super keyword- like this we can also use two variations of super keyword-
+1. super statement
+2. super method
+
+2. super() method- It is used for calling the constructor of super class inside the constructor of sub class .
+class first
+{
+	public first()
+	{	
+		System.out.println("First Constructor");
+	}
+	public first(int n)
+	{	
+		System.out.println("Second Constructor");
+	}
+}
+class sec extends first
+{
+	public sec()
+	{
+		super(10);
+		System.out.println("Constructor of Sub Class");		
+	}
+}
+
+class test
+{
+	public static void main(String args[])
+	{
+		sec obj=new sec();
+		
+	}
+}
+_____________________________________________________________
+super statement- this statement reference the members of super class.
+
+method overriding- if we define a method is sub class which signature exactly mathched with any other method of super class , then this term is known as method overriding.
+class parent
+{
+	public void thinking()
+	{
+		System.out.println("Parents Thinking is old");
+	}
+	
+}
+class child extends parent
+{
+	public void thinking()
+	{
+		super.thinking();
+		System.out.println("We are in internet era...");
+	}
+}	
+
+class demo
+{
+	
+	public static void main(String args[])
+	{
+		child obj=new child();
+		obj.thinking();
+	}
+}
+
+_______________________________________________________________
+static keyword- we use 3 variations of static keyword, These are-
+1. static variable
+2. static methods
+3. static class
+1. static variable- The are known as class level variables & they share a single copy of the variable to each object of a class.
+class stdemo
+{
+	static int num;
+	public void set()
+	{
+		num++;
+	}
+	public void get()
+	{
+		System.out.println("Value : "+num);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		stdemo obj1=new stdemo();
+		stdemo obj2=new stdemo();
+		stdemo obj3=new stdemo();
+		obj1.set();
+		obj2.set();
+		obj3.set();
+		obj1.get();
+		obj2.get();
+		obj3.get();
+		
+	}
+}
+____________________________________________________________________________________
+static methods-if you declare a method as static then you can call the particular method along with the class name without creating the object or in other words static methods are the methods which are called along with the name of the class in which it is defined.
+class stdemo
+{
+	public static void msg()
+	{
+		System.out.println("Hi , i m Static Method");
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		stdemo.msg();
+		
+	}
+}
+
+______________________________________________
+static class - if a class contains the static members then it is known as static class.
+
+using final- we can use 3 variations of final keyword-
+1. final variable
+2. final method
+3. final class
+
+1. final variable- if you declare a variable as final then you can not change the value of that variable during execution of the program. Means it will be a constant variable.
+class test
+{
+	public static void main(String args[])
+	{
+		final int a=10;
+		System.out.println(a);
+		//a=20;
+		//System.out.println(a);
+	}
+}
+______________________________
+2. final method - if you define a method as final then you can not override the particular method.
+class parent
+{
+	final public void thinking()
+	{
+		System.out.println("Parents Thinking is old");
+	}
+	
+}
+class child extends parent
+{
+	public void thinking()
+	{
+		super.thinking();
+		System.out.println("We are in internet era...");
+	}
+}	
+
+class demo
+{
+	
+	public static void main(String args[])
+	{
+		child obj=new child();
+		obj.thinking();
+	}
+}
+_________________________
+3. final Class- if you define a class as final means you can not inherit the particular class
+
+final class first
+{
+	 public  void msg()
+	{
+		System.out.println("This is Method of Super Class");
+	}
+}
+class sec extends first
+{
+	public void msg()
+	{
+		super.msg();
+		System.out.println("This is Method of Sub Class");
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		sec obj=new sec();
+		obj.msg();
+	}
+}
+

@@ -1,0 +1,153 @@
+interface & abstract class- They are used for designing the model of a system.
+interface- it contains the list of unimplemented methods & defines the responsibility of a class.
+Syntax
+interface interfacename
+{
+	method prototype-1
+	method prototype-2
+	___________________
+	___________________
+}
+
+for implementing the interface on the class-
+class classname implements interfacename
+{
+	body of the class
+}
+Note - if you implements an interface in your class then you must override all the methods whatever is declared inside the interface.
+
+interface qamarwork
+{
+	public boolean palindrome(int n);
+	public int reverse(int n);
+}
+class qamar implements qamarwork
+{
+	public int reverse(int n)
+	{
+		int rev=0,r;
+		while(n>0)
+		{
+			r=n%10;
+			rev=rev*10+r;
+			n=n/10;
+		}
+		return rev;
+	}	
+	public boolean palindrome(int n)
+	{
+		return n==reverse(n)?true:false;
+	}
+	
+}
+
+class test
+{
+	public static void main(String args[])
+	{
+		qamar obj=new qamar();
+		if(obj.palindrome(121)==true)
+			System.out.println("Number is Palindrome");
+		else
+			System.out.println("Number is Not Palindrome");
+	}
+}
+
+__________________________________________
+abstract class- it same like interface but difference is that it contains implemented & unimplemented methods both. and methods which will be unimplemented must define asbtract methods. we inherit the abstract class but could not create the object of abstract class.
+
+Syntax 
+abstract class classname
+{
+	abstract method prototype();
+	method()
+	{
+	
+
+	}
+}
+abstract class qamarwork
+{
+	abstract boolean palindrome(int n);
+	public int reverse(int n)
+	{
+		int rev=0,r;
+		while(n>0)
+		{
+			r=n%10;
+			rev=rev*10+r;
+			n=n/10;
+		}
+		return rev;
+	}	
+}
+class qamar extends qamarwork
+{
+	
+	public boolean palindrome(int n)
+	{
+		return n==reverse(n)?true:false;
+	}
+	
+}
+
+class test
+{
+	public static void main(String args[])
+	{
+		qamar obj=new qamar();
+		if(obj.palindrome(121))
+			System.out.println("Number is Palindrome");
+		else
+			System.out.println("Number is Not Palindrome");
+	}
+}
+
+_______________________________________________________________
+packages- It is like a folder which contains classes, and we can import them whenever is required.
+Steps for creating your own package.
+1. create a folder in your system with the same name which you want for your package. for eg opr
+2. now open notepad & write program for package.
+package opr;
+public class calc
+{
+	public int reverse(int n)
+	{
+		int rev=0,r;
+		while(n>0)
+		{
+			r=n%10;
+			rev=rev*10+r;
+			n=n/10;
+		}
+		return rev;
+	}	
+	public boolean palindrome(int n)
+	{
+		return n==reverse(n)?true:false;
+	}
+	
+}
+
+3. svae your package inside the package folder.
+4. now compile your package
+	javac opr\calc.java
+
+5. now write a program for using the package
+import opr.*;
+class test
+{
+	public static void main(String args[])
+	{
+		calc obj=new calc();
+		if(obj.palindrome(121))
+			System.out.println("Number is Palindrome");
+		else
+			System.out.println("Number is Not Palindrome");
+	}
+}
+
+6. Save your program. like c:\your_java_folder	
+7. now set path again, like the following-
+	set path=java_path;package_folder_path
+8. now run your program

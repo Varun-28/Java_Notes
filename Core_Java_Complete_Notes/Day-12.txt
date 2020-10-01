@@ -1,0 +1,410 @@
+Event Handling- Event is an action which indicates happening of any operation.for handling the event in java we must import java.awt.event package & we must consider on two things-
+1. Event Source
+2. Event Listener
+
+1. Event Source- It is an object like button, textbox etc on which we perform the event.Each object support some common events and some special event also.
+2. Event Listener Interfaces- java provides a lot of listener interfaces which allows you for handling the particular event. The listener interfaces provides the skeleton on which we implement the event.
+
+Steps for handling event-
+	for handling any event you must follow the following steps-
+	1. implement the listener interfaces. like
+		class classname implements EventListenerName
+		{
+			_______
+		}
+	2. Register the event. Like the following-
+		objectname.addListenerType(this);
+	3. Define all the handlers.
+
+Event Handling Interfaces
+
+ListenerName	Handlers				Purpose
+
+ActionListener	actionPerformed(ActionEvent)		When any object click by mouse
+ItemListener	itemStateChanged(ItemEvent)		When the selected item changes
+TextListener	textValueChanged(TextEvent)		When the value of textbox is change
+KeyListener	keyPressed(KeyEvent)		When any key is pressed, released or typed
+		keyReleased(KeyEvent)
+		keyTyped(KeyEvent)
+MouseListener	mouseClicked(MouseEvent)		When mouse related activities occur
+		mouseEntered(MouseEvent)
+		mouseExited(MouseEvent)
+		mousePressed(MouseEvent)
+		mouseReleased(MouseEvent)
+WindowListener	windowActivated(WindowEvent)	When window related activities occurs
+		windowClosed(WindowEvent)
+		windowClosing(WindowEvent)
+		windowDeactivated(WindowEvent)
+		windowDeiconified(WindowEvent)
+		windowIconified(WindowEvent)
+		windowOpened(WindowEvent)
+
+Using ActionListener-
+import java.awt.*;
+import java.awt.event.*;
+class win extends Frame implements ActionListener
+{
+	Button b1,b2,b3;
+	public win()
+	{
+		setTitle("Event Handling Window");
+		setLayout(new FlowLayout());
+		b1=new Button("Red");
+		b2=new Button("Blue");
+		b3=new Button("Green");
+		add(b1);
+		add(b2);
+		add(b3);
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		setSize(400,150);
+		setVisible(true);
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==b1)
+			setBackground(Color.red);
+		else if(e.getSource()==b2)
+			setBackground(Color.blue);
+		else if(e.getSource()==b3)
+			setBackground(Color.green);
+	}
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}
+___________________________________________________________________
+Using TextListener-
+import java.applet.*;
+import java.awt.*;
+import java.awt.event.*;
+public class text extends Frame implements TextListener,ActionListener
+{
+	Label l1,l2,l3;
+	TextField t1,t2,t3;
+	Button b1;
+	public text()
+	{
+		setTitle("Welcome");
+		setLayout(new GridLayout(4,2));
+		setSize(440,250);
+		l1=new Label("Basic Salary");
+		l2=new Label("Ta");
+		l3=new Label("Da");
+		t1=new TextField(10);
+		t2=new TextField(10);
+		t3=new TextField(10);
+		b1=new Button("Exit");
+		add(l1);
+		add(t1);
+		add(l2);
+		add(t2);
+		add(l3);
+		add(t3);
+		add(b1);
+		t1.addTextListener(this);
+		b1.addActionListener(this);
+		setVisible(true);
+	}
+	public static void main(String args[])
+	{
+		text e=new text();
+		
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+			System.exit(0);
+
+		}
+
+	}
+	public void textValueChanged(TextEvent e)
+	{
+
+		if(e.getSource()==t1)
+		{
+			int bs,ta,da;
+			bs=Integer.parseInt(t1.getText());
+			ta=(bs*4)/100;
+			da=(bs*6)/100;
+			t2.setText(Integer.toString(ta));
+			t3.setText(Integer.toString(da));
+
+		}
+	}
+
+
+}
+____________________________________________________________
+using ItemListener
+import java.awt.*;
+import java.awt.event.*;
+public class item extends Frame implements ActionListener,ItemListener
+{
+	Label l1;
+	Choice c1=new Choice();
+	Button b1;
+	public item(String s)
+	{
+		super(s);
+		setLayout(new FlowLayout());
+		setSize(240,150);
+		setBackground(Color.red);
+		c1.addItem("Red");
+		c1.addItem("Green");
+		c1.addItem("Blue");
+		c1.addItem("Yellow");
+		l1=new Label("Select Color");
+		b1=new Button("Exit");
+		add(l1);
+		add(c1);
+		add(b1);
+		c1.addItemListener(this);
+		b1.addActionListener(this);
+		setVisible(true);
+	}
+	public static void main(String args[])
+	{
+		item e=new item("Event Handling");
+		
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+			System.exit(0);
+		}
+
+	}
+	public void itemStateChanged(ItemEvent e)
+	{
+		if(e.getSource()==c1)     
+		{
+			String s;
+			s=c1.getSelectedItem();
+			if(s.equals("Red"))
+				setBackground(Color.red);
+			else if(s.equals("Blue"))
+				setBackground(Color.blue);
+			else if(s.equals("Green"))
+				setBackground(Color.green);
+			else if(s.equals("Yellow"))
+				setBackground(Color.yellow);
+		}
+	}
+}
+_________________________________________________________________________________________
+using Mouse Listener
+import java.awt.*;
+import java.awt.event.*;
+public class mouse extends Frame implements MouseListener
+{
+	Button b1;
+	int w=250,h=150,count=0;
+	public mouse(String s)
+	{
+		super(s);
+		setLayout(new FlowLayout());
+		setSize(w,h);
+		b1=new Button("Mouse Move");
+		add(b1);
+		b1.addMouseListener(this);
+		setVisible(true);
+	}
+	public static void main(String args[])
+	{
+		mouse e=new mouse("Mouse Handling");
+		
+	}
+	public void mouseExited(MouseEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+			setBackground(Color.pink);
+		}
+	}
+	public void mousePressed(MouseEvent e)
+	{}
+	public void mouseReleased(MouseEvent e)
+	{}
+	public void mouseClicked(MouseEvent e)
+	{
+		count++;
+		setTitle(Integer.toString(count)+" No of times cliked");
+	}
+	public void mouseEntered(MouseEvent e)
+	{
+
+		if(e.getSource()==b1)
+		{
+			w+=50;
+			h+=20;
+			setSize(w,h);
+			System.out.println(w+"\t"+h);
+			setBackground(Color.yellow);
+		}	
+	}
+}
+		
+		
+	
+
+_____________________________________________________
+
+Key Listener
+
+import java.awt.*;
+import java.awt.event.*;
+public class key extends Frame implements KeyListener
+{
+	Button b1;
+	int x=50,y=200;
+	public key(String s)
+	{
+		super(s);
+		setLayout(new FlowLayout());
+		setSize(240,150);
+		b1=new Button("KeyPress");
+		add(b1);
+		b1.addKeyListener(this);
+		setVisible(true);
+	}
+	public static void main(String args[])
+	{
+		key e=new key("Key Handling");
+		
+	}
+	public void keyPressed(KeyEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+			setBackground(Color.red);
+			setSize(300,400);
+			setLocation(x,y);
+			x+=10;
+			y+=20;
+			b1.setLabel("Leave Me");
+		}
+	}
+	public void keyReleased(KeyEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+			setBackground(Color.blue);
+			b1.setLabel("Press Me");
+			setSize(240,150);
+
+		}
+	}
+	
+	public void keyTyped(KeyEvent e)
+	{
+	
+	}
+}
+		
+		
+	
+_________________________________________________________
+Adapter Classes- The problem of Listener interfaces is that we must define all the handlers either they are required or not?
+We can solve this problem by using Adapter class. The adapter classes are-
+1. KeyAdapter
+2. MouseAdapter
+3. WindowAdapter
+
+Example
+import java.awt.*;
+import java.awt.event.*;
+class win extends Frame 
+{
+	public win()
+	{
+		setTitle("Event Handling Window");
+		setLayout(new FlowLayout());
+		setSize(400,150);
+		addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent e)
+			{
+				System.exit(0);
+			}
+		});
+		setVisible(true);
+	}
+	
+}
+class test
+{
+	public static void main(String args[])
+	{
+		win obj=new win();
+	}
+}
+
+
+
+	
+
+
+-----------------------------------------------------------------
+Mouse Adapter
+
+
+import java.awt.*;
+import java.awt.event.*;
+public class mouse extends Frame 
+{
+	Button b1;
+	int w=250,h=150,count=0;
+	public mouse(String s)
+	{
+		super(s);
+		setLayout(new FlowLayout());
+		setSize(w,h);
+		b1=new Button("Mouse Move");
+		add(b1);
+		b1.addMouseListener(new MouseAdapter()
+		{
+			public void mouseExited(MouseEvent e)
+			{
+				setBackground(Color.pink);
+			}
+		
+			public void mouseClicked(MouseEvent e)
+			{
+				count++;
+				setTitle(Integer.toString(count)+" No of times cliked");
+			}
+			public void mouseEntered(MouseEvent e)
+			{
+
+				w+=50;
+				h+=20;
+				setSize(w,h);
+				System.out.println(w+"\t"+h);
+				setBackground(Color.yellow);
+			}	
+		});
+		setVisible(true);
+	}
+	public static void main(String args[])
+	{
+		mouse e=new mouse("Mouse Handling");
+		
+	}
+	
+}
+		
+		
+	
+
+
+
+

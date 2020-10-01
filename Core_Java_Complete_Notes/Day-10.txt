@@ -1,0 +1,327 @@
+Embeding Image on The Applet- for embedding image on the applet you must use drawImage() method & image must be in the current folder.
+Example
+import java.applet.*;
+import java.awt.*;
+public class image extends Applet
+{
+	Image img;
+	public void init()
+	{
+		System.out.println(getCodeBase());
+		img=getImage(getCodeBase(),"devang.jpg");
+	}
+	public void paint(Graphics g)
+	{
+		g.drawImage(img,0,0,400,400,this);
+	}
+}
+/*
+<applet code="image" width="400" height="400">
+</applet>
+*/
+______________________________________________________________________
+using repaint() method- this method calls the paint() method recursively.so it is used for creating an animated program.
+Example 
+import java.applet.*;
+import java.awt.*;
+public class paint extends Applet
+{
+	int x;
+	public void init()
+	{
+		x=0;
+	}
+	public void paint(Graphics g)
+	{
+		g.drawString("Welcome",x,50);
+		x=x+5;
+		try{
+			Thread.sleep(100);
+		}catch(InterruptedException e){}
+		repaint();
+	}
+}
+/*
+<applet code="paint" width="400" height="400">
+</applet>
+*/
+
+
+Example 1
+import java.applet.*;
+import java.awt.*;
+public class myanimation1 extends Applet
+{
+	int c,x,y,x1,y1,x2,y2;
+	Font f;
+	public void init()
+	{
+		c=0;
+		x=20;
+		y=30;
+		x1=270;
+		y1=180;
+		f=new Font("Arial",Font.BOLD,30);
+		x2=0;
+		y2=35;
+	}
+	public void paint(Graphics g)	
+	{
+		g.setFont(f);
+		x2+=15;
+		if(x2>=250)
+			x2=0;
+		c++;
+		g.drawString("Dhananjay",x2,y2);
+		if(c==1)
+		{
+			g.setColor(Color.red);
+			setBackground(Color.blue);
+			setForeground(Color.green);
+		}
+		else if(c==2)
+		{
+			g.setColor(Color.pink);
+			setBackground(Color.red);
+			setForeground(Color.blue);
+		}
+		else if(c==3)
+		{
+			g.setColor(Color.green);
+			setBackground(Color.yellow);
+			setForeground(Color.pink);
+			c=0;
+		}
+
+		x+=20;
+		y+=20;
+		if(x>=270)
+			x=20;
+		if(y>=180)
+			y=20;
+		x1-=20;
+		y1-=20;
+		if(x1<=20)
+			x1=270;
+		if(y1<=30)
+			y1=180;	
+		g.fillOval(x,y,30,30);
+		g.fillOval(x1,y1,30,30);
+		for(long i=1;i<=100000000;i++);
+		repaint();
+	}
+}
+/*
+<applet code="myanimation1" height=200 width=300>
+</applet>
+*/
+
+________________________________________________
+Example 2
+import java.applet.*;
+import java.awt.*;
+public class image extends Applet
+{
+	Image img1,img2,img3,img4;
+	int c;
+	public void init()
+	{
+		img1=getImage(getCodeBase(),"login.jpg");
+		img2=getImage(getCodeBase(),"Nokia.jpg");
+		img3=getImage(getCodeBase(),"Sony.jpg");
+		img4=getImage(getCodeBase(),"Samsung.jpg");
+		c=1;
+	}
+	public void paint(Graphics g)
+	{
+		if(c==1)
+			g.drawImage(img1,0,0,350,350,this);
+		else if(c==2)
+			g.drawImage(img2,0,0,350,350,this);
+		else if(c==3)
+			g.drawImage(img3,0,0,350,350,this);
+		else if(c==4)
+		{
+			g.drawImage(img4,0,0,350,350,this);
+			c=0;
+		}
+		c++;
+		try{
+			Thread.sleep(1000);
+		}catch(InterruptedException e){}
+		repaint();
+	}
+	
+}
+/*
+<applet code="image" width="400" height="400">
+</applet>
+*/
+______________________________________________________________________________
+Working with AWT Components-
+AWT stands for Abstract Window Toolkit , it is used for designing an user interface. for adding a component to the window we will use add() and for removing components to the window we will use remove() method.The AWT Components are-
+1. Label Class-used for showing any message on the window.
+Constructor
+	Label()
+	Label(String s)
+	Label(String s,int align)
+			Label.LEFT
+			Label.CENTER
+			Label.RIGHT
+Methods
+	setText()
+	getText()
+2. TextField Class- This class construct an input field, & used for reading a value.
+Constrcutors
+	TextField()
+	TextField(int size)
+	TextField(String text)
+	TextField(String text,int size)
+Methods
+	setText()
+	getText()
+3. Button- This class is used for creating a command button.
+Constructors
+	Button()
+	Button(String label)
+Methods
+	setLabel()
+	getLabel()
+ Example
+import java.applet.*;
+import java.awt.*;
+public class awt extends Applet
+{
+	Label l1;
+	TextField t1;
+	Button b1;
+	public void init()
+	{
+		l1=new Label("Enter Your Name ");
+		t1=new TextField(10);
+		b1=new Button("Click Here");
+		add(l1);
+		add(t1);
+		add(b1);
+	}
+}
+/*
+<applet code="awt" width="400" height="200">
+</applet>
+*/
+________________________________________________
+4. Checkbox Class- This class is used for  creating a checkbox & for creating radio button we must pass the object of CheckboxGroup class.
+Constructors
+	Checkbox()
+	Checkbox(String s)
+	Checkbox(String s,boolean select)
+	Checkbox(String s,CheckboxGroup object,boolean select) //create a radio button
+Example
+import java.applet.*;
+import java.awt.*;
+public class awt extends Applet
+{
+	Label l1,l2;
+	Checkbox cb1,cb2,cb3,cb4,cb5;
+	CheckboxGroup cbg;
+	public void init()
+	{
+	
+		l1=new Label("Hobbies");
+		l1.setForeground(Color.red);
+		l2=new Label("Gender");
+		cb1=new Checkbox("Cricket",true);
+		cb2=new Checkbox("Singing");
+		cb3=new Checkbox("Reading");
+		cbg=new CheckboxGroup();
+		cb4=new Checkbox("Male",cbg,true);
+		cb5=new Checkbox("Female",cbg,false);
+		add(l1);
+		add(cb1);
+		add(cb2);
+		add(cb3);
+		add(l2);
+		add(cb4);		
+		add(cb5);		
+	}
+}
+/*
+<applet code="awt" width="400" height="200">
+</applet>
+*/
+______________________________________________________________
+6. Choice & List Class - Choice class is used for creating a dropdown list while list class is used for ceating a list box.
+Constructors
+	Choice()
+Constructors
+	List()
+	List(int nor,boolean select)
+Methods
+	1. addItem() or add()
+	2. remove() or removeItem()
+	3. getSelectedItem()
+
+
+Example
+import java.applet.*;
+import java.awt.*;
+public class list extends Applet
+{
+	Label l1,l2;
+	Choice c1;
+	List li1;
+	
+	public void init()
+	{
+		l1=new Label("Select Name");
+		l2=new Label("Select City");
+		c1=new Choice();
+		li1=new List(3,true);
+		c1.add("Ravi");
+		c1.add("Vipin");
+		c1.add("Janmejay");
+		c1.add("Shashank");
+		c1.add("Dev");
+		li1.add("Allahabad");
+		li1.add("Delhi");
+		li1.add("Kanpur");
+		li1.add("Lucknow");
+		add(l1);
+		add(c1);
+		add(l2);
+		add(li1);
+	}
+}
+/*
+<applet code="list" height=200 width=250>
+</applet>
+*/
+_______________________________________________________
+
+TextArea Class - this class used for creating a multiline input textbox
+Constructors
+	TextArea(rows,cols)
+Methods
+	setText()
+	getText()
+
+
+import java.applet.*;
+import java.awt.*;
+public class awt extends Applet
+{
+	Label l1;
+	TextArea t1;
+	public void init()
+	{
+		l1=new Label("Aaj Ka Vichar");
+		t1=new TextArea(5,20);
+		add(l1);
+		add(t1);
+	}
+}
+/*
+<applet code="awt" width="400" height="200">
+</applet>
+*/
+
